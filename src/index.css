@@ -1,13 +1,22 @@
+:root {
+    --primary: #3B3B3B;
+    --secondary: #9b8d0e;
+    --terceary: #9b9b9b;
+    --light1: #9b9b9b;
+    --light2: #525252;
+    --comfortaa: 'Comfortaa', cursive;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: 'Comfortaa', cursive;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: 'Consolas', monospace;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
