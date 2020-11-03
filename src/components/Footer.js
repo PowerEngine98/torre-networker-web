@@ -5,7 +5,7 @@ function Footer() {
                 <h1 className='text-lg py-3 font-bold'>
                     Marco Acosta &copy; 2020
                     <hr className='bg-black'/>
-                    <a href='https://bio.torre.co/powerengine98/signal'> Give me a signal, it's free! </a>
+                    <a href='https://bio.torre.co/powerengine98/signal'> Signal me, it's free! </a>
                 </h1>
             </div>
         </div>

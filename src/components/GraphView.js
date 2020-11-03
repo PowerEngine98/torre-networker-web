@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ForceGraph3D } from 'react-force-graph'
 import { TextureLoader, SpriteMaterial, Sprite } from 'three'
+import SpriteText from 'three-spritetext'
 
 function getUser(networkUser) {
     let user = { ...networkUser }
@@ -45,7 +46,7 @@ function GraphView({ username, select }) {
         }
     }, [select])
 
-    const handleFocus = node => {
+    function handleFocus(node) {
         const distance = 60
         const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z)
         focusReference.current.cameraPosition({
@@ -56,12 +57,12 @@ function GraphView({ username, select }) {
         setSelected(node)
     }
 
-    const handleExpand = node => {
+    function handleExpand(node) {
         async function fetchOrganizations() {
             let currentOrganizations = graphData.nodes
                 .filter(node => node.organization)
                 .map(node => node.organization)
-                .filter((organization, index, array) => array.indexOf(organization) == index)
+                .filter((organization, index, array) => array.indexOf(organization) === index)
             let payload = {
                 organizations: currentOrganizations,
                 users: graphData.nodes.map(node => node.id)
@@ -75,15 +76,26 @@ function GraphView({ username, select }) {
             let newUsers = []
             let newLinks = []
             let user
+            let organizationLeader
             for (let organization of organizations) {
-                for (let targetUser of organization.members) {
-                    user = getUser(targetUser)
-                    user.organization = organization.name
-                    newUsers.push(user)
+                if(organization.members.length > 0) {
+                    organizationLeader = getUser(organization.members[0])
+                    newUsers.push(organizationLeader)
                     newLinks.push({
                         source: node.id,
-                        target: user.id
+                        target: organizationLeader.id,
+                        organization: organization.name
                     })
+                    for (let index = 1; index < organization.members.length; index++) {
+                        user = getUser(organization.members[index])
+                        user.organization = organization.name
+                        newUsers.push(user)
+                        newLinks.push({
+                            source: organizationLeader.id,
+                            target: user.id,
+                            organization: organization.name
+                        })
+                    }
                 }
             }
             setGraphData(({ nodes, links }) => ({
@@ -101,12 +113,25 @@ function GraphView({ username, select }) {
                 graphData={graphData}
                 backgroundColor='rgba(0, 0, 0, 0)'
                 showNavInfo={false}
-                linkOpacity={0.5}
-                linkColor='rgba(0, 0, 0, 1)'
                 linkWidth={0.5}
                 linkDirectionalParticles={1}
                 linkDirectionalArrowLength={3}
                 linkDirectionalArrowRelPos={1}
+                linkAutoColorBy={link => link.organization}
+                linkThreeObjectExtend={true}
+                linkThreeObject={link => {
+                    const sprite = new SpriteText(link.organization)
+                    sprite.color = 'lightgrey'
+                    sprite.textHeight = 1.5
+                    return sprite;
+                }}
+                linkPositionUpdate={(sprite, { start, end }) => {
+                    const middle = Object.assign(...['x', 'y', 'z'].map(c => ({
+                        [c]: start[c] + (end[c] - start[c]) / 2
+                    })))
+                    Object.assign(sprite.position, middle)
+                }}
+                nodeLabel = {node => node.name + ' ' + Math.floor(node.weight)}
                 nodeThreeObject={(node) => {
                     const texture = new TextureLoader().load(node.photo)
                     const material = new SpriteMaterial({ map: texture })
