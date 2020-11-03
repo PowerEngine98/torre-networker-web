@@ -1,6 +1,6 @@
 :root {
   --primary: #3B3B3B;
-  --secondary: #9b8d0e;
+  --secondary: #CDDC39;
   --terceary: #9b9b9b;
   --light1: #9b9b9b;
   --light2: #525252;
@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: 'Comfortaa', cursive;
+  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
