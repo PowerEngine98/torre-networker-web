@@ -1,0 +1,43 @@
+{
+  "name": "torre-networker-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.21.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.0",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "clsx": "^1.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.1",
+    "postcss": "^8.3.8",
+    "tailwindcss": "^2.2.16"
+  },
+  "scripts": {
+    "start": "concurrently npm:start:*",
+    "start:js": "react-scripts start",
+    "start:css": "npx tailwindcss -i ./tailwind.css -o ./src/index.css --jit -w",
+    "build": "react-scripts build"
+  },
+  "proxy": "http://localhost:5000",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary: #CDDC39;
+    --secondary: #3B3B3B;
+    --terceary: #9b9b9b;
+    --light1: #9b9b9b;
+    --light2: #525252;
+    --modal-shadow: rgba(22, 24, 33, 0.7);
+}
+
+@layer base {
+    @font-face {
+      font-family: 'Muli';
+      src: url(./assets/fonts/muli/Muli.ttf) format('truetype');
+    }
+}
+
+code {
+    font-family: 'Consolas', monospace;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    padding-left: 5px;
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light1);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
