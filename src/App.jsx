@@ -1,15 +1,13 @@
 import GraphView from './components/GraphView'
-import TopBar from './components/TopBar'
+import { GraphProvider } from './contexts/GraphContext'
 
 const App = () => {
 
   return (
-    <div className='flex fixed w-full h-full flex-col bg-secondary font-muli'>
-      <TopBar/>
-      <GraphView/>
-    </div>
+    <GraphProvider>
+        <GraphView />
+    </GraphProvider>
   )
-
 }
 
 export default App

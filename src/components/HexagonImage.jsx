@@ -25,7 +25,7 @@ const HexagonImage = (props) => {
                 >
                     <image
                         href={!src || loading ? fallBack : src}
-                        alt='Profile photo'
+                        alt=''
                         x='-25'
                         width='150'
                         height='100'

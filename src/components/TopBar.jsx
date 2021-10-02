@@ -1,17 +1,11 @@
 import clsx from 'clsx'
+import Search from './Search'
 import UserDetail from './UserDetail'
-import logo from '../assets/images/logo.png'
-//import { faConn } from '@fortawesome/free-solid-svg-icons'
 import { FaConnectdevelop } from 'react-icons/fa'
 
-const TopBar = (props) => {
+import logo from '../assets/images/logo.png'
 
-    const {
-        selected,
-        loading,
-        expandSelectedNode,
-        focusSelectedNode
-    } = props
+const TopBar = ({ focus }) => {
 
     return (
         <div
@@ -58,7 +52,10 @@ const TopBar = (props) => {
                 />
             </a>
             <div className='absolute flex left-0 top-full'>
-                <UserDetail />
+                <div className='z-30 flex w-72 flex-col bg-secondary shadow-xl rounded-b-xl border border-light2'>
+                    <Search />
+                    <UserDetail focus={focus}/>
+                </div>
             </div>
         </div>
     )
