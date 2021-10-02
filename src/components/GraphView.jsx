@@ -46,7 +46,7 @@ const GraphView = () => {
                         <div className='flex flex-col items-center w-64 space-y-3 animate-bounce'>
                             <MdSearch className='text-5xl' />
                             <p className='text-white text-center'>
-                                Seach someone to start exploring his profesional network
+                                Seach someone to start exploring his professional network
                             </p>
                         </div>
                     </div>
