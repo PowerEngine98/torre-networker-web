@@ -4,8 +4,8 @@ import axios from 'axios'
 const GraphView = () => {
 
     return (
-        <div>
-           Graph
+        <div className='flex w-full h-full overflow-x-hidden overflow-y-hidden'>
+           
         </div>
     )
 
