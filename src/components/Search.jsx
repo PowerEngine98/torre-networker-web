@@ -9,18 +9,27 @@ const Search = () => {
 
     const [name, setName] = useState('')
     const [results, setResults] = useState()
-    const {selectNewRoot} = useGraph()
+    const { selectNewRoot } = useGraph()
 
     const search = useCallback(async (name) => {
         try {
-            if(!name) {
+            if (!name) {
                 setResults(undefined)
             }
-            const response = await axios.post('https://search.torre.co/people/_search?size=5', {
-                name: {
-                    term: name
+            const response = await axios.post(
+                'https://search.torre.co/people/_search?size=5',
+                {
+                    name: {
+                        term: name
+                    }
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8',
+                        "Access-Control-Allow-Origin": "*",
+                    }
                 }
-            })
+            )
             const results = response.data?.results?.map(result => {
                 return {
                     username: result.username,
